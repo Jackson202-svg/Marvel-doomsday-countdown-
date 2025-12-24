@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Marvel Doomsday Countdown</title>
+<script src="https://cdn.jsdelivr.net"></script>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient(circle at top, #2b0000, #000000 70%);
+    color: #ffffff;
+    font-family: "Arial Black", Impact, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .container {
+    border: 2px solid #c40000;
+    padding: 40px 50px;
+    box-shadow: 0 0 40px rgba(196, 0, 0, 0.7);
+  }
+
+  .title {
+    font-size: 3rem;
+    letter-spacing: 4px;
+    color: #e50914;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    opacity: 0.8;
+    margin-bottom: 25px;
+  }
+
+  .timer {
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px #ff0000;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="title">MARVEL</div>
+  <div class="subtitle">DOOMSDAY COUNTDOWN</div>
+  <div class="timer" id="timer">Loading…</div>
+</div>
+
+<script>
+  // 🔴 CHANGE THE DATE HERE
+  const targetDate = new Date("May 1, 2026 00:00:00").getTime();
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      document.getElementById("timer").textContent = "DOOMSDAY HAS ARRIVED";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    document.getElementById("timer").textContent =
+      `${days}D : ${hours}H : ${minutes}M : ${seconds}S`;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
